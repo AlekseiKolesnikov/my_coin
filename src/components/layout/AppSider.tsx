@@ -1,8 +1,8 @@
 import {Card, Layout, List, Statistic, Tag, Typography} from "antd";
 import {ArrowDownOutlined, ArrowUpOutlined} from '@ant-design/icons';
-import {capitalize} from "../utils/precent-difference.ts";
+import {capitalize} from "../../utils/precent-difference.ts";
 import {useContext} from "react";
-import CryptoContext from "../context/crypto-context.tsx";
+import CryptoContext from "../../context/crypto-context.tsx";
 
 const siderStyle: React.CSSProperties = {
     padding: '1rem'
