@@ -55,9 +55,9 @@ export interface IAsset {
     date: Date
 }
 
-export interface DataType {
-    key: React.Key;
+export interface ITableColumn {
+    key: string;
     name: string;
-    age: number;
-    address: string;
+    price: number;
+    amount: number;
 }
