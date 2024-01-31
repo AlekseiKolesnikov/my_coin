@@ -7,7 +7,7 @@ import { CoinInfo } from "./CoinInfo.tsx";
 export const AddAssetForm = ({ onClose }: { onClose: () => void }) => {
     const [form] = Form.useForm();
     const [coin, setCoin] = useState<ICoinStatsApi | null>(null);
-    const { coinStats } = useCrypto();
+    const { coinStats, addAsset } = useCrypto();
     const [submitted, setSubmitted] = useState(false);
     const assetRef = useRef<IAsset>()
 
@@ -85,11 +85,15 @@ export const AddAssetForm = ({ onClose }: { onClose: () => void }) => {
     };
 
     const onFinish = (values: IAsset) => {
-        assetRef.current = {
+        const newAsset = {
             id: coin.id,
             amount: values.amount,
             price: values.price,
             date: new Date()
+        }
+        assetRef.current = newAsset
+        if (addAsset) {
+            addAsset(newAsset)
         }
         setSubmitted(true)
     };

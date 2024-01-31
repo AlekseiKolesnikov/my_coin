@@ -39,7 +39,8 @@ export interface ICoinAssets extends ICoinAssetApi {
 export interface ICryptoContext {
     coinAssets: ICoinAssets[],
     coinStats: ICoinStatsApi[],
-    loading: boolean
+    loading: boolean,
+    addAsset: undefined | ((newAsset: ICoinAssetApi) => void)
 }
 
 export interface CryptoContextProviderProps {
