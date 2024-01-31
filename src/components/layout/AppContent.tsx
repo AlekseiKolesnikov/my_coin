@@ -1,4 +1,5 @@
-import {Layout} from "antd";
+import { Layout, Typography } from "antd";
+import { useCrypto } from "../../hooks/useCrypto.ts";
 
 const contentStyle: React.CSSProperties = {
     textAlign: 'center',
@@ -9,7 +10,20 @@ const contentStyle: React.CSSProperties = {
 };
 
 export default function AppContent() {
+    const { coinAssets, coinStats } = useCrypto()
+
+    const cryptoPriceMap = coinStats.reduce<Record<string, number>>((acc, c) => {
+        acc[c.id] = c.price
+        return acc
+    }, {})
     return (
-        <Layout.Content style={contentStyle}></Layout.Content>
+        <Layout.Content style={contentStyle}>
+            <Typography.Title level={3} style={{ textAlign: 'left', color: "white" }}>
+                Portfolio: {' '}
+                ${coinAssets
+                .map((asset) => asset.amount * cryptoPriceMap[asset.id])
+                .reduce((acc, v) => acc + (v ? v : 0), 0).toFixed(2)}
+            </Typography.Title>
+        </Layout.Content>
     )
 }
