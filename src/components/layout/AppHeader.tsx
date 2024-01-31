@@ -1,9 +1,9 @@
-import {Button, Drawer, Layout, Modal, Select, Space} from "antd";
-import {useCrypto} from "../../hooks/useCrypto.ts";
-import {useEffect, useState} from "react";
+import { Button, Drawer, Layout, Modal, Select, Space } from "antd";
+import { useCrypto } from "../../hooks/useCrypto.ts";
+import { useEffect, useState } from "react";
 import CoinInfoModal from "../CoinInfoModal.tsx";
-import {ICoinStatsApi} from "../../interfaces/coin-stats.interface.ts";
-import AddAssetForm from "../AddAssetForm.tsx";
+import { ICoinStatsApi } from "../../interfaces/coin-stats.interface.ts";
+import { AddAssetForm } from "../AddAssetForm.tsx";
 
 const headerStyle: React.CSSProperties = {
     width: '100%',
@@ -20,7 +20,7 @@ export default function AppHeader() {
     const [modal, setModal] = useState(false)
     const [drawer, setDrawer] = useState(false)
     const [coin, setCoin] = useState<ICoinStatsApi | null>(null)
-    const {coinStats} = useCrypto()
+    const { coinStats } = useCrypto()
 
     useEffect(() => {
         const keypress = (event: KeyboardEvent) => {
@@ -47,7 +47,7 @@ export default function AppHeader() {
                 open={select}
                 onSelect={handelSelect}
                 onClick={() => setSelect((prev) => !prev)}
-                style={{width: '250px'}}
+                style={{ width: '250px' }}
                 value={['press / to open']}
                 optionLabelProp="label"
                 options={coinStats.map(coin => ({
@@ -57,7 +57,7 @@ export default function AppHeader() {
                 }))}
                 optionRender={(option) => (
                     <Space>
-                        <img style={{width: 20}} src={option.data.icon} alt={option.data.label}/>
+                        <img style={{ width: 20 }} src={option.data.icon} alt={option.data.label}/>
                         {option.data.label}
                     </Space>
                 )}
@@ -76,11 +76,14 @@ export default function AppHeader() {
                 <CoinInfoModal coin={coin}/>
             </Modal>
             <Drawer
+                destroyOnClose
                 width={600}
                 title="Add Asset"
                 onClose={() => setDrawer(false)}
                 open={drawer}>
-                <AddAssetForm/>
+                <AddAssetForm onClose={() => {
+                    setDrawer(false)
+                }}/>
             </Drawer>
         </Layout.Header>
     )

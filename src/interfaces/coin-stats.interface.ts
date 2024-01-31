@@ -1,4 +1,4 @@
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 export interface ICoinStatsApi {
     id: string;
@@ -29,7 +29,7 @@ export interface ICoinAssetApi {
     date: Date;
 }
 
-export interface ICoinAssets extends ICoinAssetApi{
+export interface ICoinAssets extends ICoinAssetApi {
     grow: boolean,
     growPercent: number,
     totalAmount: number,
@@ -41,6 +41,14 @@ export interface ICryptoContext {
     coinStats: ICoinStatsApi[],
     loading: boolean
 }
+
 export interface CryptoContextProviderProps {
     children: ReactNode;
+}
+
+export interface IAsset {
+    id: string;
+    amount: number;
+    price: number;
+    date: Date
 }

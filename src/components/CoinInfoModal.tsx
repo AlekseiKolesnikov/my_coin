@@ -1,18 +1,11 @@
-import {ICoinStatsApi} from "../interfaces/coin-stats.interface.ts";
-import {Divider, Flex, Tag, Typography} from "antd";
+import { ICoinStatsApi } from "../interfaces/coin-stats.interface.ts";
+import { Divider, Tag, Typography } from "antd";
+import { CoinInfo } from "./CoinInfo.tsx";
 
 export default function CoinInfoModal({coin}: { coin: ICoinStatsApi | null }) {
     return (
         <>
-            <Flex align={"center"}>
-                <img src={coin?.icon} alt={coin?.name} style={{width: 40, marginRight: 10}}/>
-                <Typography.Title
-                    level={2}
-                    style={{margin: 0}}
-                >
-                    {coin?.symbol} {coin?.name}
-                </Typography.Title>
-            </Flex>
+            <CoinInfo coin={coin} withSymbol/>
             <Divider/>
             <Typography.Paragraph>
                 <Typography.Text strong>1 hour: </Typography.Text>
