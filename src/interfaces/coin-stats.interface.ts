@@ -33,7 +33,8 @@ export interface ICoinAssets extends ICoinAssetApi {
     grow: boolean,
     growPercent: number,
     totalAmount: number,
-    totalProfit: number
+    totalProfit: number,
+    name: string
 }
 
 export interface ICryptoContext {
@@ -52,4 +53,11 @@ export interface IAsset {
     amount: number;
     price: number;
     date: Date
+}
+
+export interface DataType {
+    key: React.Key;
+    name: string;
+    age: number;
+    address: string;
 }
